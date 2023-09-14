@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        var img1=document.createElement("img");//its create 1 img of width,height,position
+        img1.src="PacMan1.png";
+        img1.style.height="100px";
+        img1.style.width="100px";
+        img1.style.position="absolute"
+        img1.style.left="0px";
+         
+        var img2=document.createElement("img");//its create 2 img of width,height,position
+        img2.src="PacMan2.png";
+        img2.style.height="100px";
+        img2.style.width="100px";
+        img2.style.position="absolute"
+        img2.style.left="0px";
+        
+        var img3=document.createElement("img");//its create 3 img of width,height,position
+        img3.src="PacMan3.png";
+        img3.style.height="100px";
+        img3.style.width="100px";
+        img3.style.position="absolute"
+        img3.style.right="0px";
+
+        var img4=document.createElement("img");//its create 4 img of width,height,position
+        img4.src="PacMan4.png";
+        img4.style.height="100px";
+        img4.style.width="100px";
+        img4.style.position="absolute"
+        img4.style.right="0px";
+
+        var frontimg=[img1,img2];//its array of pacman imgages used for moving Left 
+         var backimg=[img4,img3];//its array of pacman imgages used for moving Right
+         var max=1000;
+         var vel=30;
+         var pos1=0;
+         var pos2=0;
+         var i=0;
+         var j=0;
+         function move(){ //its function used for pacman images front and back
+          if(pos1<=max){
+           img3.style.visibility="hidden"
+           img4.style.visibility="hidden"//in this if condition move imgs only left side
+            pos1=pos1+vel;
+           
+            if(i==0){
+           img1.style.visibility="visible";
+           img2.style.visibility="hidden";
+         }
+         else{
+           img2.style.visibility="visible";
+           img1.style.visibility="hidden";
+         }
+
+           frontimg[i].style.marginLeft=pos1+"px";
+           document.body.appendChild(frontimg[i]);
+           if(i==0){
+             i=1;
+           }
+           else if(i==1){
+             i=0;
+           }
+         }
+         else if(pos2<=max){//in this else if condition move imgs only right side
+           img1.style.visibility="hidden"
+           img2.style.visibility="hidden"
+
+          pos2=pos2+vel;
+         if(j==0){
+         img3.style.visibility="visible";
+         img4.style.visibility="hidden";
+         }
+         else{
+         img4.style.visibility="visible";
+         img3.style.visibility="hidden";
+         }
+         backimg[j].style.right=pos2+"px";
+         document.body.appendChild(backimg[j]);
+         if(j==0){
+         j=1;
+         }
+         else if(j==1){
+         j=0;
+         }
+         }
+         else{
+         img1.style.style="hidden";
+         img3.style.right="0px";
+          pos1=0; //once if and elseif are false this else change the value of pos1 and pos2
+          pos2=0;
+           }}
+         setInterval(move,300)//its a schedular function 
+          </script>
+     </body>
+</html>
